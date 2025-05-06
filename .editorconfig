@@ -1,15 +1,61 @@
+# EditorConfig (https://editorconfig.org/)
+# Top-level configuration (applies to all files)
 root = true
 
+# =============================================
+# 1. CORE FILE HANDLING SETTINGS
+# =============================================
 [*]
-end_of_line = lf
-trim_trailing_whitespace = true
-charset = utf-8
-indent_style = space
+charset = utf-8                  # Ensures UTF-8 encoding
+end_of_line = lf                 # Unix-style line endings (LF)
+trim_trailing_whitespace = true  # Auto-remove trailing whitespace
+insert_final_newline = true      # Ensure files end with newline
+indent_style = space             # Spaces over tabs
+indent_size = 2                  # Standard 2-space indentation
+
+# =============================================
+# 2. LANGUAGE/TOOL-SPECIFIC OVERRIDES
+# =============================================
+# JavaScript/TypeScript/JSON files
+[*.{js,jsx,ts,tsx,json}]
 indent_size = 2
 
-[/node_modules/*]
-indent_size = unset
-indent_style = unset
+# HTML/CSS
+[*.{html,css,scss,less}]
+indent_size = 2
 
-[{package.json,.travis.yml,.eslintrc.json}]
+# Python
+[*.py]
+indent_size = 4                  # PEP-8 compliance
+
+# Markdown
+[*.md]
+trim_trailing_whitespace = false # Allow trailing spaces in markdown
+max_line_length = 80             # Recommended for readability
+
+# =============================================
+# 3. IGNORED FILES/DIRECTORIES
+# =============================================
+# Node.js dependencies (no formatting)
+[/node_modules/*]
+indent_style = ignore
+indent_size = ignore
+insert_final_newline = ignore
+trim_trailing_whitespace = ignore
+
+# Build artifacts
+[/dist/*]
+[/build/*]
+indent_style = ignore
+
+# =============================================
+# 4. CONFIG FILE STANDARDS
+# =============================================
+# JSON config files (2-space indentation)
+[{package.json,.eslintrc.json,.prettierrc.json,.babelrc.json}]
+indent_size = 2
+
+# YAML files (2-space indentation)
+[{.travis.yml,.github/workflows/*.yml,.circleci/config.yml}]
+indent_size = 2
 indent_style = space
